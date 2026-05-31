@@ -1,50 +1,120 @@
 "use client";
 
-import * as React from "react";
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X } from "lucide-react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+
+import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "./theme-toggle";
 
+const navLinks = [
+  { name: "Beranda", href: "/" },
+  { name: "Fitur", href: "/fitur" },
+  { name: "Harga", href: "/harga" },
+  { name: "Tentang Kami", href: "/tentang" },
+];
+
 export function Navbar() {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Deteksi scroll untuk mengubah latar belakang navbar
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <motion.header
-      className="border-border/40 bg-background/95 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 w-full border-b backdrop-blur"
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.3 }}
-    >
-      <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-8">
-        <div className="flex gap-6 md:gap-10">
-          <Link href="/" className="flex items-center space-x-2">
-            <span className="inline-block text-xl font-bold tracking-tight">
-              Portfolio
-            </span>
+    <>
+      <motion.nav
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.3 }}
+        className={`fixed top-0 right-0 left-0 z-50 transition-colors duration-300 ${
+          isScrolled
+            ? "border-border border-b bg-white/70 shadow-sm backdrop-blur-md dark:bg-slate-950/70"
+            : "bg-transparent"
+        }`}
+      >
+        <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-2">
+            <span className="text-xl font-bold tracking-tight">Portfolio.</span>
           </Link>
-          <nav className="hidden items-center gap-6 md:flex">
-            <Link
-              href="#about"
-              className="text-muted-foreground hover:text-foreground text-sm font-medium transition-colors"
+
+          <div className="flex items-center gap-2 md:gap-6">
+            {/* Desktop Navigation */}
+            <ul className="text-muted-foreground hidden items-center gap-6 text-sm font-medium md:flex">
+              {navLinks.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    href={link.href}
+                    className="hover:text-foreground transition-colors"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+
+            {/* Theme Toggle */}
+            <ThemeToggle />
+
+            {/* Mobile Menu Toggle */}
+            <button
+              className="text-foreground p-2 md:hidden"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle menu"
             >
-              About
-            </Link>
-            <Link
-              href="#projects"
-              className="text-muted-foreground hover:text-foreground text-sm font-medium transition-colors"
-            >
-              Projects
-            </Link>
-            <Link
-              href="#contact"
-              className="text-muted-foreground hover:text-foreground text-sm font-medium transition-colors"
-            >
-              Contact
-            </Link>
-          </nav>
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
-        <div className="flex items-center justify-end space-x-4">
-          <ThemeToggle />
-        </div>
-      </div>
-    </motion.header>
+      </motion.nav>
+
+      {/* Mobile Navigation Menu */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="bg-background border-border fixed top-16 right-0 left-0 z-40 border-b shadow-lg md:hidden"
+          >
+            <div className="container mx-auto flex flex-col gap-4 px-4 py-6">
+              <ul className="flex flex-col gap-4 text-sm font-medium">
+                {navLinks.map((link) => (
+                  <li key={link.name}>
+                    <Link
+                      href={link.href}
+                      className="hover:text-primary block w-full py-2 transition-colors"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              <div className="border-border flex flex-col gap-2 border-t pt-4">
+                <Button variant="outline" className="w-full">
+                  Masuk
+                </Button>
+                <Button className="w-full">Daftar</Button>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
