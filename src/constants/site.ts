@@ -1,4 +1,6 @@
-export const SITE_CONFIG = {
+import { SiteConfig } from "@/types";
+
+export const SITE_CONFIG: SiteConfig = {
   name: "Wafley",
   fullName: "Elgin Al-wafi Dauliyah",
   title: "Elgin Al-wafi Dauliyah | Full-Stack Developer",

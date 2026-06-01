@@ -5,8 +5,9 @@ import {
   LinkedinIcon,
   GmailIcon,
 } from "@/components/shared/icons";
+import { SocialLink } from "@/types";
 
-export const SOCIAL_LINKS = [
+export const SOCIAL_LINKS: SocialLink[] = [
   {
     name: "Email",
     href: "mailto:wafley@gmail.com",
