@@ -32,7 +32,7 @@ export function Navbar() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5, delay: 3.2, ease: "easeOut" }}
-        className={`sticky top-0 right-0 left-0 z-50 border-b transition-all duration-300 ${
+        className={`fixed top-0 right-0 left-0 z-50 border-b transition-all duration-300 ${
           isScrolled
             ? "border-border bg-background/60 dark:bg-background/60 shadow-sm backdrop-blur-md"
             : "border-transparent bg-transparent shadow-none backdrop-blur-none"

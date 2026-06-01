@@ -4,6 +4,7 @@ export type SiteConfig = {
   name: string;
   fullName: string;
   role: string;
+  tagline: string;
   title: string;
   description: string;
   shortDescription: string;

@@ -1,89 +1,208 @@
 "use client";
 
-import React, { useRef } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, Icosahedron } from "@react-three/drei";
-import { motion } from "framer-motion";
-import * as THREE from "three";
+import React from "react";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/button";
-
-function RotatingShape() {
-  const meshRef = useRef<THREE.Mesh>(null);
-
-  useFrame((state, delta) => {
-    if (meshRef.current) {
-      meshRef.current.rotation.x += delta * 0.2;
-      meshRef.current.rotation.y += delta * 0.3;
-    }
-  });
-
-  return (
-    <Icosahedron ref={meshRef} args={[2, 1]}>
-      <meshStandardMaterial
-        color="currentColor"
-        wireframe
-        emissive="#444444"
-        emissiveIntensity={0.2}
-      />
-    </Icosahedron>
-  );
-}
+import { FarGrid } from "@/components/shared/far-grid";
+import { SITE_CONFIG } from "@/constants";
+import useSpeedScrollElement from "@/hooks/useScrollProgress";
 
 export function HeroSection() {
+  const delay = 3.2;
+  const { ref: containerRef, scrollYProgress } =
+    useSpeedScrollElement<HTMLElement>({ offset: ["start start", "end end"] });
+
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const springConfig = { damping: 25, stiffness: 100 };
+  const smoothX = useSpring(mouseX, springConfig);
+  const smoothY = useSpring(mouseY, springConfig);
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!containerRef.current) return;
+    const { left, top, width, height } =
+      containerRef.current.getBoundingClientRect();
+    const x = (e.clientX - left - width / 2) / (width / 2);
+    const y = (e.clientY - top - height / 2) / (height / 2);
+    mouseX.set(x);
+    mouseY.set(y);
+  };
+
+  const handleMouseLeave = () => {
+    mouseX.set(0);
+    mouseY.set(0);
+  };
+
   return (
-    <section className="bg-background relative flex min-h-[calc(100vh-4rem)] w-full items-center overflow-hidden">
-      {/* Background gradients for extra modern feel */}
-      <div className="from-primary/5 via-background to-background pointer-events-none absolute inset-0 bg-gradient-to-br" />
-
-      <div className="relative z-10 container mx-auto flex flex-col-reverse items-center justify-between gap-8 px-4 py-12 md:flex-row md:px-8 md:py-24">
-        {/* Text Content */}
-        <motion.div
-          className="flex flex-1 flex-col space-y-6"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
-          <h1 className="font-heading text-foreground text-4xl leading-[1.1] font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
-            Building Modern <br className="hidden lg:block" />
-            <span className="from-primary to-primary/60 bg-gradient-to-r bg-clip-text text-transparent">
-              Digital Experiences
-            </span>
-          </h1>
-          <p className="text-muted-foreground max-w-[600px] text-lg leading-relaxed sm:text-xl">
-            I craft responsive, scalable, and visually stunning web applications
-            using the latest technologies like Next.js, Framer Motion, and
-            Three.js.
-          </p>
-          <div className="flex flex-wrap gap-4 pt-4">
-            <Button size="lg">View Work</Button>
-            <Button size="lg" variant="outline">
-              Contact Me
-            </Button>
-          </div>
-        </motion.div>
-
-        {/* 3D Visual */}
-        <motion.div
-          className="aspect-square w-full flex-1 md:aspect-auto md:h-[600px]"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.2 }}
-        >
-          <Canvas
-            camera={{ position: [0, 0, 6], fov: 45 }}
-            className="text-primary h-full w-full"
+    <section
+      ref={containerRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="h-[200vh]"
+    >
+      <motion.div
+        initial={{ opacity: 0, filter: "blur(10px)" }}
+        animate={{ opacity: 1, filter: "blur(0px)" }}
+        transition={{ duration: 0.6, delay, ease: "easeOut" }}
+        className="sticky top-0 flex h-screen items-center justify-center overflow-hidden"
+      >
+        {/* Background Parallax Elements */}
+        <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+          {/* Parallax Element 1 - Far Grid */}
+          <motion.div
+            style={{
+              x: useTransform(() => smoothX.get() * -30),
+              y: useTransform(
+                () => smoothY.get() * -30 + scrollYProgress.get() * -200,
+              ),
+            }}
+            className="absolute -top-10 -right-10 h-[120%] w-[120%] opacity-80"
           >
-            <ambientLight intensity={0.5} />
-            <directionalLight position={[10, 10, 5]} intensity={1} />
-            <OrbitControls
-              enableZoom={false}
-              autoRotate
-              autoRotateSpeed={0.5}
-            />
-            <RotatingShape />
-          </Canvas>
-        </motion.div>
-      </div>
+            <FarGrid />
+          </motion.div>
+
+          {/* Parallax Element 2 - Floating Circle */}
+          <motion.div
+            style={{
+              x: useTransform(
+                () => smoothX.get() * 40 + scrollYProgress.get() * -200,
+              ),
+              y: useTransform(
+                () => smoothY.get() * 40 + scrollYProgress.get() * -500,
+              ),
+            }}
+            className="border-foreground bg-primary absolute top-20 left-4 h-16 w-16 rounded-full border-4 shadow-[4px_4px_0_0_var(--color-foreground)] md:top-1/4 md:left-32 md:h-24 md:w-24"
+          />
+
+          {/* Parallax Element 3 - Floating Square */}
+          <motion.div
+            style={{
+              x: useTransform(
+                () => smoothX.get() * -60 + scrollYProgress.get() * 300,
+              ),
+              y: useTransform(
+                () => smoothY.get() * -60 + scrollYProgress.get() * 600,
+              ),
+              rotate: useTransform(
+                () => smoothX.get() * 15 + scrollYProgress.get() * 90,
+              ),
+            }}
+            className="border-foreground bg-secondary absolute right-4 bottom-32 h-20 w-20 border-4 shadow-[6px_6px_0_0_var(--color-foreground)] md:right-40 md:bottom-1/4 md:h-32 md:w-32"
+          />
+
+          {/* Parallax Element 4 - Cross/Star */}
+          <motion.div
+            style={{
+              x: useTransform(
+                () => smoothX.get() * 80 + scrollYProgress.get() * 400,
+              ),
+              y: useTransform(
+                () => smoothY.get() * 80 + scrollYProgress.get() * -800,
+              ),
+              rotate: useTransform(() => scrollYProgress.get() * 180),
+            }}
+            className="text-foreground absolute top-[60%] left-[80%] text-4xl font-black md:top-1/2 md:left-3/4 md:text-6xl"
+          >
+            +
+          </motion.div>
+
+          {/* Parallax Element 5 - Pill */}
+          <motion.div
+            style={{
+              x: useTransform(
+                () => smoothX.get() * 50 + scrollYProgress.get() * -500,
+              ),
+              y: useTransform(
+                () => smoothY.get() * -20 + scrollYProgress.get() * 400,
+              ),
+              rotate: useTransform(() => -15 + scrollYProgress.get() * -45),
+            }}
+            className="border-foreground absolute bottom-16 left-8 h-8 w-24 rounded-full border-4 bg-transparent shadow-[4px_4px_0_0_var(--color-foreground)] md:bottom-1/3 md:left-20 md:h-12 md:w-32"
+          />
+        </div>
+
+        {/* Main Content */}
+        <div className="relative z-10 container flex flex-col items-center justify-center text-center">
+          <motion.div
+            className="flex max-w-6xl flex-col items-center space-y-6 md:space-y-8"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay, ease: "easeOut" }}
+          >
+            <motion.div
+              initial={{ y: -100, scale: 0.5 }}
+              animate={{ y: 0, scale: 1 }}
+              transition={{ duration: 0.6, delay, ease: "easeOut" }}
+              style={{
+                y: useTransform(scrollYProgress, [0, 0.7], [0, -500]),
+              }}
+              className="border-foreground bg-background mb-2 inline-block border-2 px-4 py-1 shadow-[4px_4px_0_0_var(--color-foreground)] md:mb-4"
+            >
+              <span className="text-primary font-bold tracking-widest uppercase">
+                {SITE_CONFIG.role}
+              </span>
+            </motion.div>
+
+            <motion.h1
+              initial={{ x: -500, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.6, delay, ease: "easeOut" }}
+              style={{
+                x: useTransform(scrollYProgress, [0, 0.7], [0, -500]),
+                opacity: useTransform(scrollYProgress, [0, 0.7], [1, 0]),
+              }}
+              className="text-foreground mb-2 text-4xl font-extrabold lg:text-7xl"
+            >
+              {SITE_CONFIG.fullName}
+            </motion.h1>
+
+            <motion.span
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.6, delay, ease: "easeOut" }}
+              style={{
+                scale: useTransform(scrollYProgress, [0, 0.5], [1, 0]),
+              }}
+              className="bg-foreground border-foreground text-primary mb-2 inline-block rotate-2 border-2 px-4 py-2 text-4xl shadow-[6px_6px_0_0_var(--color-primary)] lg:text-7xl"
+            >
+              {SITE_CONFIG.name}
+            </motion.span>
+
+            <motion.p
+              layoutId="shared-description"
+              style={{
+                x: useTransform(scrollYProgress, [0.8, 1], [0, -200]),
+                y: useTransform(scrollYProgress, [0.8, 1], [0, -300]),
+              }}
+              className="text-foreground/80 max-w-3xl text-lg leading-relaxed font-medium sm:text-xl"
+            >
+              {SITE_CONFIG.shortDescription}
+            </motion.p>
+
+            <motion.div
+              initial={{ y: 500 }}
+              animate={{ y: 0 }}
+              transition={{ duration: 0.6, delay, ease: "easeOut" }}
+              style={{
+                y: useTransform(scrollYProgress, [0, 0.7], [0, 500]),
+              }}
+              className="flex flex-wrap items-center justify-center gap-6"
+            >
+              <Button size="lg" className="h-14 px-10 text-lg">
+                START A PROJECT
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                className="bg-background h-14 px-10 text-lg"
+              >
+                VIEW ARCHIVE
+              </Button>
+            </motion.div>
+          </motion.div>
+        </div>
+      </motion.div>
     </section>
   );
 }

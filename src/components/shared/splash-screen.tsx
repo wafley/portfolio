@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { TextCursor, CheckCircle } from "lucide-react";
+import { FarGrid } from "@/components/shared/far-grid";
 
 import { SITE_CONFIG } from "@/constants";
 
@@ -44,7 +45,7 @@ export function SplashScreen() {
           transition={{ duration: 0.8, ease: "easeInOut" }}
         >
           {/* Retro Grid Background */}
-          <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,var(--color-border)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-border)_1px,transparent_1px)] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_20%,transparent_100%)] bg-[size:40px_40px] opacity-20" />
+          <FarGrid className="z-0 opacity-50" />
 
           {/* Scanline overlay */}
           <div className="pointer-events-none absolute inset-0 z-50 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.1)_50%)] bg-[length:100%_4px] opacity-20" />

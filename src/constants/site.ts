@@ -4,6 +4,7 @@ export const SITE_CONFIG: SiteConfig = {
   name: "Wafley",
   fullName: "Elgin Al-wafi Dauliyah",
   role: "Full-Stack Developer",
+  tagline: "Coding - Coffee - Happy",
   title: "Elgin Al-wafi Dauliyah | Full-Stack Developer",
   description:
     "Official portfolio of Elgin Al-wafi Dauliyah, a Full-Stack Developer experienced in designing and building modern, scalable, and efficient web applications.",
