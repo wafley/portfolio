@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
+import { SITE_CONFIG } from "@/constants";
 
 export const metadata: Metadata = {
-  title: "Elgin Al-wafi Dauliyah | Full-Stack Developer",
-  description:
-    "Official portfolio of Elgin Al-wafi Dauliyah, a Full-Stack Developer experienced in designing and building modern, scalable, and efficient web applications.",
+  title: SITE_CONFIG.title,
+  description: SITE_CONFIG.description,
   keywords: [
     "Elgin Al-wafi Dauliyah",
     "Full-Stack Developer",
@@ -17,25 +17,24 @@ export const metadata: Metadata = {
   ],
   authors: [
     {
-      name: "Elgin Al-wafi Dauliyah",
-      url: "https://wafley.vercel.app",
+      name: SITE_CONFIG.fullName,
+      url: SITE_CONFIG.url,
     },
   ],
-  creator: "Elgin Al-wafi Dauliyah",
-  metadataBase: new URL("https://wafley.vercel.app"),
+  creator: SITE_CONFIG.fullName,
+  metadataBase: new URL(SITE_CONFIG.url),
 
   openGraph: {
-    title: "Elgin Al-wafi Dauliyah | Full-Stack Developer",
-    description:
-      "Explore my projects, experiences, and skills in modern web development.",
-    url: "https://wafley.vercel.app",
-    siteName: "Elgin Al-wafi Dauliyah Portfolio",
+    title: SITE_CONFIG.title,
+    description: SITE_CONFIG.shortDescription,
+    url: SITE_CONFIG.url,
+    siteName: `${SITE_CONFIG.fullName} Portfolio`,
     images: [
       {
-        url: "/og-image.jpg",
+        url: SITE_CONFIG.ogImage,
         width: 1200,
         height: 630,
-        alt: "Preview Portfolio Elgin Al-wafi Dauliyah",
+        alt: `Preview Portfolio ${SITE_CONFIG.fullName}`,
       },
     ],
     locale: "en_US",
@@ -44,11 +43,10 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "Elgin Al-wafi Dauliyah | Full-Stack Developer",
-    description:
-      "Explore my projects, experiences, and skills in modern web development.",
-    images: ["/og-image.jpg"],
-    creator: "@wafley_",
+    title: SITE_CONFIG.title,
+    description: SITE_CONFIG.shortDescription,
+    images: [SITE_CONFIG.ogImage],
+    creator: SITE_CONFIG.twitterHandle,
   },
 
   robots: {
