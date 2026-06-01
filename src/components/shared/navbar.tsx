@@ -6,8 +6,8 @@ import { Menu, X } from "lucide-react";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
-import { ThemeToggle } from "./theme-toggle";
-import { NAV_LINKS } from "@/constants";
+import { ThemeToggle } from "@/components/shared/theme-toggle";
+import { NAV_LINKS, SITE_CONFIG } from "@/constants";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -35,14 +35,16 @@ export function Navbar() {
         transition={{ duration: 0.3 }}
         className={`fixed top-0 right-0 left-0 z-50 transition-colors duration-300 ${
           isScrolled
-            ? "border-border bg-background/70 dark:bg-background border-b shadow-sm backdrop-blur-md"
+            ? "border-border bg-background/60 dark:bg-background/60 border-b shadow-sm backdrop-blur-md"
             : "bg-transparent"
         }`}
       >
         <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
-            <span className="text-xl font-bold tracking-tight">Wafley.</span>
+            <span className="text-xl font-bold tracking-tight">
+              {SITE_CONFIG.name}.
+            </span>
           </Link>
 
           <div className="flex items-center gap-2 md:gap-6">

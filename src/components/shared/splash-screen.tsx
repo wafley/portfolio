@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { TextCursor, CheckCircle } from "lucide-react";
 
+import { SITE_CONFIG } from "@/constants";
+
 export function SplashScreen() {
   const [show, setShow] = useState(true);
   const [progress, setProgress] = useState(0);
@@ -54,7 +56,7 @@ export function SplashScreen() {
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.5 }}
             >
-              PORTFOLIO
+              {SITE_CONFIG.name}
               <span className="ml-2 animate-pulse">
                 <TextCursor className="h-[0.8em] w-[0.8em]" strokeWidth={3} />
               </span>
