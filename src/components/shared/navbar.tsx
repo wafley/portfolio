@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, TerminalSquare, X } from "lucide-react";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
@@ -41,14 +41,13 @@ export function Navbar() {
         <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
-            <span className="text-xl font-bold tracking-tight">
-              {SITE_CONFIG.name}.
-            </span>
+            <TerminalSquare className="text-primary h-8 w-8" />
+            <span className="text-2xl tracking-tight">{SITE_CONFIG.name}.</span>
           </Link>
 
           <div className="flex items-center gap-2 md:gap-6">
             {/* Desktop Navigation */}
-            <ul className="text-muted-foreground hidden items-center gap-6 text-sm font-medium md:flex">
+            <ul className="text-muted-foreground hidden items-center gap-6 text-base font-medium md:flex">
               {NAV_LINKS.map((link) => (
                 <li key={link.name}>
                   <Link
@@ -87,7 +86,7 @@ export function Navbar() {
             className="bg-background border-border fixed top-16 right-0 left-0 z-40 border-b shadow-lg md:hidden"
           >
             <div className="container mx-auto flex flex-col gap-4 px-4 py-6">
-              <ul className="flex flex-col gap-4 text-sm font-medium">
+              <ul className="flex flex-col gap-4 text-base font-medium">
                 {NAV_LINKS.map((link) => (
                   <li key={link.name}>
                     <Link
