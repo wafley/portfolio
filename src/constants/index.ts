@@ -1,3 +1,2 @@
-import { NAV_LINKS } from "./nav-links";
-
-export { NAV_LINKS };
+export { NAV_LINKS } from "@/constants/nav-links";
+export { SOCIAL_LINKS } from "@/constants/social-links";
