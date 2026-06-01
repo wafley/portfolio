@@ -1,6 +1,6 @@
-import type { Metadata } from "next";
 import "./globals.css";
 
+import { metadata } from "@/config/metadata";
 import { ThemeProvider } from "@/components/shared/theme-provider";
 import { Navbar } from "@/components/shared/navbar";
 import { SplashScreen } from "@/components/shared/splash-screen";
@@ -12,10 +12,7 @@ interface RootLayoutProps {
   readonly children: React.ReactNode;
 }
 
-export const metadata: Metadata = {
-  title: "Portfolio",
-  description: "Modern Portfolio Website",
-};
+export { metadata };
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
