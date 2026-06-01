@@ -2,9 +2,7 @@ import "./globals.css";
 
 import { metadata } from "@/config/metadata";
 import { ThemeProvider } from "@/components/shared/theme-provider";
-import { Navbar } from "@/components/shared/navbar";
-import { SplashScreen } from "@/components/shared/splash-screen";
-import { Footer } from "@/components/shared/footer";
+import { LayoutWrapper } from "@/components/shared/layout-wrapper";
 import { fontVariables } from "@/config/fonts";
 import { cn } from "@/lib/utils";
 
@@ -28,10 +26,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           enableSystem
           disableTransitionOnChange
         >
-          <SplashScreen />
-          <Navbar />
-          <main className="flex-1">{children}</main>
-          <Footer />
+          <LayoutWrapper>{children}</LayoutWrapper>
         </ThemeProvider>
       </body>
     </html>
