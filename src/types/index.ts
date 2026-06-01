@@ -3,6 +3,7 @@ import * as React from "react";
 export type SiteConfig = {
   name: string;
   fullName: string;
+  role: string;
   title: string;
   description: string;
   shortDescription: string;
