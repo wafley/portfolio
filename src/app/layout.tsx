@@ -4,6 +4,7 @@ import "./globals.css";
 
 import { ThemeProvider } from "@/components/shared/theme-provider";
 import { Navbar } from "@/components/shared/navbar";
+import { SplashScreen } from "@/components/shared/splash-screen";
 import { Footer } from "@/components/shared/footer";
 
 const geistSans = Geist({
@@ -39,6 +40,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <SplashScreen />
           <Navbar />
           <main className="flex-1">{children}</main>
           <Footer />
