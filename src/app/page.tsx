@@ -1,5 +1,5 @@
-import { HeroSection } from "@/components/sections/HeroSection";
 import { SITE_CONFIG } from "@/constants";
+import HomePage from "@/modules/home";
 
 export const metadata = {
   title: `Home - ${SITE_CONFIG.name}`,
@@ -8,7 +8,7 @@ export const metadata = {
 export default function Home() {
   return (
     <>
-      <HeroSection />
+      <HomePage />
     </>
   );
 }

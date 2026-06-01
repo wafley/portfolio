@@ -55,14 +55,8 @@ export function HeroSection() {
             Three.js.
           </p>
           <div className="flex flex-wrap gap-4 pt-4">
-            <Button size="lg" className="h-12 rounded-full px-8 text-base">
-              View Work
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="h-12 rounded-full px-8 text-base"
-            >
+            <Button size="lg">View Work</Button>
+            <Button size="lg" variant="outline">
               Contact Me
             </Button>
           </div>
