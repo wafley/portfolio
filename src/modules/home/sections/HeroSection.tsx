@@ -66,10 +66,10 @@ export function HeroSection() {
           <motion.div
             style={{
               x: useTransform(
-                () => smoothX.get() * 40 + scrollYProgress.get() * -200,
+                () => smoothX.get() * 80 + scrollYProgress.get() * -200,
               ),
               y: useTransform(
-                () => smoothY.get() * 40 + scrollYProgress.get() * -500,
+                () => smoothY.get() * 80 + scrollYProgress.get() * -500,
               ),
             }}
             className="border-foreground bg-primary absolute top-20 left-4 h-16 w-16 rounded-full border-4 shadow-[4px_4px_0_0_var(--color-foreground)] md:top-1/4 md:left-32 md:h-24 md:w-24"
@@ -79,13 +79,13 @@ export function HeroSection() {
           <motion.div
             style={{
               x: useTransform(
-                () => smoothX.get() * -60 + scrollYProgress.get() * 300,
+                () => smoothX.get() * -90 + scrollYProgress.get() * 300,
               ),
               y: useTransform(
-                () => smoothY.get() * -60 + scrollYProgress.get() * 600,
+                () => smoothY.get() * -90 + scrollYProgress.get() * 600,
               ),
               rotate: useTransform(
-                () => smoothX.get() * 15 + scrollYProgress.get() * 90,
+                () => smoothX.get() * 25 + scrollYProgress.get() * 90,
               ),
             }}
             className="border-foreground bg-secondary absolute right-4 bottom-32 h-20 w-20 border-4 shadow-[6px_6px_0_0_var(--color-foreground)] md:right-40 md:bottom-1/4 md:h-32 md:w-32"
@@ -95,10 +95,10 @@ export function HeroSection() {
           <motion.div
             style={{
               x: useTransform(
-                () => smoothX.get() * 80 + scrollYProgress.get() * 400,
+                () => smoothX.get() * 120 + scrollYProgress.get() * 400,
               ),
               y: useTransform(
-                () => smoothY.get() * 80 + scrollYProgress.get() * -800,
+                () => smoothY.get() * 120 + scrollYProgress.get() * -800,
               ),
               rotate: useTransform(() => scrollYProgress.get() * 180),
             }}
@@ -111,12 +111,12 @@ export function HeroSection() {
           <motion.div
             style={{
               x: useTransform(
-                () => smoothX.get() * 50 + scrollYProgress.get() * -500,
+                () => smoothX.get() * 100 + scrollYProgress.get() * -500,
               ),
               y: useTransform(
-                () => smoothY.get() * -20 + scrollYProgress.get() * 400,
+                () => smoothY.get() * -100 + scrollYProgress.get() * 400,
               ),
-              rotate: useTransform(() => -15 + scrollYProgress.get() * -45),
+              rotate: useTransform(() => -25 + scrollYProgress.get() * -45),
             }}
             className="border-foreground absolute bottom-16 left-8 h-8 w-24 rounded-full border-4 bg-transparent shadow-[4px_4px_0_0_var(--color-foreground)] md:bottom-1/3 md:left-20 md:h-12 md:w-32"
           />
@@ -135,7 +135,7 @@ export function HeroSection() {
               animate={{ y: 0, scale: 1 }}
               transition={{ duration: 0.6, delay, ease: "easeOut" }}
               style={{
-                y: useTransform(scrollYProgress, [0, 0.7], [0, -500]),
+                y: useTransform(scrollYProgress, [0, 1], [0, -500]),
               }}
               className="border-foreground bg-background mb-2 inline-block border-2 px-4 py-1 shadow-[4px_4px_0_0_var(--color-foreground)] md:mb-4"
             >
@@ -149,8 +149,8 @@ export function HeroSection() {
               animate={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.6, delay, ease: "easeOut" }}
               style={{
-                x: useTransform(scrollYProgress, [0, 0.7], [0, -500]),
-                opacity: useTransform(scrollYProgress, [0, 0.7], [1, 0]),
+                x: useTransform(scrollYProgress, [0, 1], [0, -500]),
+                opacity: useTransform(scrollYProgress, [0, 1], [1, 0]),
               }}
               className="text-foreground mb-2 text-4xl font-extrabold lg:text-7xl"
             >
@@ -158,22 +158,24 @@ export function HeroSection() {
             </motion.h1>
 
             <motion.span
-              initial={{ scale: 0 }}
+              initial={{ scale: 3 }}
               animate={{ scale: 1 }}
               transition={{ duration: 0.6, delay, ease: "easeOut" }}
               style={{
-                scale: useTransform(scrollYProgress, [0, 0.5], [1, 0]),
+                scale: useTransform(scrollYProgress, [0, 1], [1, 3]),
               }}
-              className="bg-foreground border-foreground text-primary mb-2 inline-block rotate-2 border-2 px-4 py-2 text-4xl shadow-[6px_6px_0_0_var(--color-primary)] lg:text-7xl"
+              className="bg-foreground border-foreground text-primary mb-2 inline-block rotate-2 border-2 px-4 pb-2 text-4xl shadow-[6px_6px_0_0_var(--color-primary)] lg:text-7xl"
             >
               {SITE_CONFIG.name}
             </motion.span>
 
             <motion.p
-              layoutId="shared-description"
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay, ease: "easeOut" }}
               style={{
-                x: useTransform(scrollYProgress, [0.8, 1], [0, -200]),
-                y: useTransform(scrollYProgress, [0.8, 1], [0, -300]),
+                opacity: useTransform(scrollYProgress, [0.5, 1], [1, 0]),
+                scale: useTransform(scrollYProgress, [0.5, 1], [1, 0.5]),
               }}
               className="text-foreground/80 max-w-3xl text-lg leading-relaxed font-medium sm:text-xl"
             >
@@ -185,7 +187,7 @@ export function HeroSection() {
               animate={{ y: 0 }}
               transition={{ duration: 0.6, delay, ease: "easeOut" }}
               style={{
-                y: useTransform(scrollYProgress, [0, 0.7], [0, 500]),
+                y: useTransform(scrollYProgress, [0, 1], [0, 500]),
               }}
               className="flex flex-wrap items-center justify-center gap-6"
             >
