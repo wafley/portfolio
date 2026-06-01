@@ -7,13 +7,7 @@ import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "./theme-toggle";
-
-const navLinks = [
-  { name: "Beranda", href: "/" },
-  { name: "Fitur", href: "/fitur" },
-  { name: "Harga", href: "/harga" },
-  { name: "Tentang Kami", href: "/tentang" },
-];
+import { NAV_LINKS } from "@/constants";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -54,7 +48,7 @@ export function Navbar() {
           <div className="flex items-center gap-2 md:gap-6">
             {/* Desktop Navigation */}
             <ul className="text-muted-foreground hidden items-center gap-6 text-sm font-medium md:flex">
-              {navLinks.map((link) => (
+              {NAV_LINKS.map((link) => (
                 <li key={link.name}>
                   <Link
                     href={link.href}
@@ -93,7 +87,7 @@ export function Navbar() {
           >
             <div className="container mx-auto flex flex-col gap-4 px-4 py-6">
               <ul className="flex flex-col gap-4 text-sm font-medium">
-                {navLinks.map((link) => (
+                {NAV_LINKS.map((link) => (
                   <li key={link.name}>
                     <Link
                       href={link.href}
