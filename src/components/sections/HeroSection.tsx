@@ -43,7 +43,7 @@ export function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <h1 className="text-foreground text-4xl leading-[1.1] font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
+          <h1 className="font-heading text-foreground text-4xl leading-[1.1] font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
             Building Modern <br className="hidden lg:block" />
             <span className="from-primary to-primary/60 bg-gradient-to-r bg-clip-text text-transparent">
               Digital Experiences

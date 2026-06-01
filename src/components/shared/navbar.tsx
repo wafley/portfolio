@@ -42,7 +42,7 @@ export function Navbar() {
         <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
-            <span className="text-xl font-bold tracking-tight">Portfolio.</span>
+            <span className="text-xl font-bold tracking-tight">Wafley.</span>
           </Link>
 
           <div className="flex items-center gap-2 md:gap-6">

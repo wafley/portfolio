@@ -49,7 +49,7 @@ export function SplashScreen() {
 
           <div className="relative z-10 flex flex-col items-center gap-12">
             <motion.div
-              className="flex items-center justify-center text-6xl font-black tracking-tighter md:text-8xl"
+              className="font-heading flex items-center justify-center text-6xl font-black tracking-tighter md:text-8xl"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.5 }}
