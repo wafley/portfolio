@@ -1,10 +1,11 @@
 import React from "react";
-import { HeroSection } from "@/modules/home/sections";
+import { ExploreSection, HeroSection } from "@/modules/home/sections";
 
 function HomePage() {
   return (
     <>
       <HeroSection />
+      <ExploreSection />
     </>
   );
 }

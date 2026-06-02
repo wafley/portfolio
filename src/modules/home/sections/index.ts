@@ -1,1 +1,2 @@
-export { HeroSection } from "@/modules/home/sections/HeroSection";
+export { HeroSection } from "./HeroSection";
+export { ExploreSection } from "./ExploreSection";
