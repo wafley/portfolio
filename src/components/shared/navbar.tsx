@@ -4,12 +4,14 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, TerminalSquare, X } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/shared/theme-toggle";
 import { NAV_LINKS, SITE_CONFIG } from "@/constants";
 
 export function Navbar() {
+  const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -48,16 +50,23 @@ export function Navbar() {
           <div className="flex items-center gap-2 md:gap-6">
             {/* Desktop Navigation */}
             <ul className="text-muted-foreground hidden items-center gap-6 text-base font-medium md:flex">
-              {NAV_LINKS.map((link) => (
-                <li key={link.name}>
-                  <Link
-                    href={link.href}
-                    className="hover:text-foreground transition-colors"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
+              {NAV_LINKS.map((link) => {
+                const isActive = pathname === link.href;
+                return (
+                  <li key={link.name}>
+                    <Link
+                      href={link.href}
+                      className={`transition-colors ${
+                        isActive
+                          ? "text-primary font-bold"
+                          : "hover:text-foreground"
+                      }`}
+                    >
+                      {link.name}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
 
             {/* Theme Toggle */}
@@ -87,17 +96,24 @@ export function Navbar() {
           >
             <div className="container mx-auto flex flex-col gap-4 px-4 py-6">
               <ul className="flex flex-col gap-4 text-base font-medium">
-                {NAV_LINKS.map((link) => (
-                  <li key={link.name}>
-                    <Link
-                      href={link.href}
-                      className="hover:text-primary block w-full py-2 transition-colors"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      {link.name}
-                    </Link>
-                  </li>
-                ))}
+                {NAV_LINKS.map((link) => {
+                  const isActive = pathname === link.href;
+                  return (
+                    <li key={link.name}>
+                      <Link
+                        href={link.href}
+                        className={`block w-full py-2 transition-colors ${
+                          isActive
+                            ? "text-primary font-bold"
+                            : "hover:text-primary text-muted-foreground"
+                        }`}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        {link.name}
+                      </Link>
+                    </li>
+                  );
+                })}
               </ul>
               <div className="border-border flex flex-col gap-2 border-t pt-4">
                 <Button variant="outline" className="w-full">
