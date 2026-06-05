@@ -6,6 +6,9 @@ import { Button } from "@/components/ui/button";
 import { FarGrid } from "@/components/shared/far-grid";
 import { SITE_CONFIG } from "@/constants";
 import useSpeedScrollElement from "@/hooks/useScrollProgress";
+import { withNeoBrutalist } from "@/modules/home/components/with-neo-brutalist";
+
+const NeoBrutalistSpan = withNeoBrutalist("span");
 
 const HeroSection = () => {
   const delay = 3.2;
@@ -135,7 +138,7 @@ const HeroSection = () => {
               animate={{ y: 0, scale: 1 }}
               transition={{ duration: 0.6, delay, ease: "easeOut" }}
               style={{
-                y: useTransform(scrollYProgress, [0, 1], [0, -500]),
+                y: useTransform(scrollYProgress, [0, 0.7], [0, -500]),
               }}
               className="border-foreground bg-background mb-2 inline-block border-2 px-4 py-1 shadow-[4px_4px_0_0_var(--color-foreground)] md:mb-4"
             >
@@ -149,25 +152,25 @@ const HeroSection = () => {
               animate={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.6, delay, ease: "easeOut" }}
               style={{
-                x: useTransform(scrollYProgress, [0, 1], [0, -500]),
-                opacity: useTransform(scrollYProgress, [0, 1], [1, 0]),
+                x: useTransform(scrollYProgress, [0, 0.7], [0, -500]),
+                opacity: useTransform(scrollYProgress, [0, 0.7], [1, 0]),
               }}
               className="text-foreground mb-2 text-4xl font-extrabold lg:text-7xl"
             >
               {SITE_CONFIG.fullName}
             </motion.h1>
 
-            <motion.span
+            <NeoBrutalistSpan
               initial={{ scale: 3 }}
               animate={{ scale: 1 }}
               transition={{ duration: 0.6, delay, ease: "easeOut" }}
               style={{
-                scale: useTransform(scrollYProgress, [0, 1], [1, 3]),
+                scale: useTransform(scrollYProgress, [0, 0.8, 1], [1, 2, 250]),
               }}
-              className="bg-foreground border-foreground text-primary mb-2 inline-block rotate-2 border-2 px-4 pb-2 text-4xl shadow-[6px_6px_0_0_var(--color-primary)] lg:text-7xl"
+              className="relative z-20 mb-2 inline-block rotate-2"
             >
               {SITE_CONFIG.name}
-            </motion.span>
+            </NeoBrutalistSpan>
 
             <motion.p
               initial={{ opacity: 0, scale: 0.5 }}
@@ -187,7 +190,7 @@ const HeroSection = () => {
               animate={{ y: 0 }}
               transition={{ duration: 0.6, delay, ease: "easeOut" }}
               style={{
-                y: useTransform(scrollYProgress, [0, 1], [0, 500]),
+                y: useTransform(scrollYProgress, [0, 0.7], [0, 500]),
               }}
               className="flex flex-wrap items-center justify-center gap-6"
             >
