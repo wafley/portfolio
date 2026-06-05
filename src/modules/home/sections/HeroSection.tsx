@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { FarGrid } from "@/components/shared/far-grid";
 import { SITE_CONFIG } from "@/constants";
 import useSpeedScrollElement from "@/hooks/useScrollProgress";
-import { withNeoBrutalist } from "@/modules/home/components/with-neo-brutalist";
+import { withNeoBrutalist } from "@/modules/home/components";
 
 const NeoBrutalistSpan = withNeoBrutalist("span");
 

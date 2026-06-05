@@ -3,7 +3,7 @@
 import React from "react";
 import { useTransform } from "framer-motion";
 import useSpeedScrollElement from "@/hooks/useScrollProgress";
-import { withNeoBrutalist } from "@/modules/home/components/with-neo-brutalist";
+import { withNeoBrutalist } from "@/modules/home/components";
 
 const NeoBrutalistSpan = withNeoBrutalist("span");
 
