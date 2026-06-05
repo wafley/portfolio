@@ -18,7 +18,7 @@ const ExploreSection = () => {
       <div className="sticky top-0 flex h-screen flex-col items-center justify-center overflow-hidden">
         <NeoBrutalistSpan
           style={{
-            scale: useTransform(scrollYProgress, [0, 0.35, 0.6], [200, 1.2, 1]),
+            scale: useTransform(scrollYProgress, [0, 0.35], [200, 1]),
             x: useTransform(scrollYProgress, [0, 0.35], [-2000, 0]),
             y: useTransform(scrollYProgress, [0, 0.35], [-100, 0]),
           }}
