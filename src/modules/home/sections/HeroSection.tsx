@@ -67,6 +67,19 @@ const HeroSection = () => {
 
           {/* Parallax Element 2 - Floating Circle */}
           <motion.div
+            initial={{
+              x: -1000,
+              y: -1000,
+            }}
+            animate={{
+              x: 0,
+              y: 0,
+            }}
+            transition={{
+              duration: 0.6,
+              delay,
+              ease: "easeOut",
+            }}
             style={{
               x: useTransform(
                 () => smoothX.get() * 80 + scrollYProgress.get() * -200,
@@ -80,6 +93,21 @@ const HeroSection = () => {
 
           {/* Parallax Element 3 - Floating Square */}
           <motion.div
+            initial={{
+              x: -1000,
+              y: -1000,
+              rotate: -90,
+            }}
+            animate={{
+              x: 0,
+              y: 0,
+              rotate: 0,
+            }}
+            transition={{
+              duration: 0.6,
+              delay,
+              ease: "easeOut",
+            }}
             style={{
               x: useTransform(
                 () => smoothX.get() * -90 + scrollYProgress.get() * 300,
@@ -96,6 +124,21 @@ const HeroSection = () => {
 
           {/* Parallax Element 4 - Cross/Star */}
           <motion.div
+            initial={{
+              x: 1000,
+              y: -1000,
+              rotate: 180,
+            }}
+            animate={{
+              x: 0,
+              y: 0,
+              rotate: 0,
+            }}
+            transition={{
+              duration: 0.6,
+              delay,
+              ease: "easeOut",
+            }}
             style={{
               x: useTransform(
                 () => smoothX.get() * 120 + scrollYProgress.get() * 400,
@@ -112,6 +155,21 @@ const HeroSection = () => {
 
           {/* Parallax Element 5 - Pill */}
           <motion.div
+            initial={{
+              x: 1000,
+              y: 1000,
+              rotate: -90,
+            }}
+            animate={{
+              x: 0,
+              y: 0,
+              rotate: 0,
+            }}
+            transition={{
+              duration: 0.6,
+              delay,
+              ease: "easeOut",
+            }}
             style={{
               x: useTransform(
                 () => smoothX.get() * 100 + scrollYProgress.get() * -500,
