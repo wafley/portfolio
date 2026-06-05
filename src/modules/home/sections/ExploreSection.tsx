@@ -1,5 +1,7 @@
 import React from "react";
 
-export function ExploreSection() {
+const ExploreSection = () => {
   return <div>Explore Section</div>;
-}
+};
+
+export default React.memo(ExploreSection);

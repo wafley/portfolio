@@ -7,7 +7,7 @@ import { FarGrid } from "@/components/shared/far-grid";
 import { SITE_CONFIG } from "@/constants";
 import useSpeedScrollElement from "@/hooks/useScrollProgress";
 
-export function HeroSection() {
+const HeroSection = () => {
   const delay = 3.2;
   const { ref: containerRef, scrollYProgress } =
     useSpeedScrollElement<HTMLElement>({ offset: ["start start", "end end"] });
@@ -207,4 +207,6 @@ export function HeroSection() {
       </motion.div>
     </section>
   );
-}
+};
+
+export default React.memo(HeroSection);
