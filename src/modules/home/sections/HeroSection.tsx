@@ -3,9 +3,12 @@
 import React from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import { FarGrid } from "@/components/shared/far-grid";
 import { SITE_CONFIG } from "@/constants";
 import useSpeedScrollElement from "@/hooks/useScrollProgress";
+
+const MotionCard = motion(Card);
 
 const HeroSection = () => {
   const delay = 3.2;
@@ -190,19 +193,19 @@ const HeroSection = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay, ease: "easeOut" }}
           >
-            <motion.div
+            <MotionCard
               initial={{ y: -100, scale: 0.5 }}
               animate={{ y: 0, scale: 1 }}
               transition={{ duration: 0.6, delay, ease: "easeOut" }}
               style={{
                 y: useTransform(scrollYProgress, [0, 0.7], [0, -500]),
               }}
-              className="border-foreground bg-background mb-2 inline-block border-2 px-4 py-1 shadow-[4px_4px_0_0_var(--color-foreground)] md:mb-4"
+              className="bg-background mb-2 inline-block px-4 py-1 md:mb-4"
             >
               <span className="text-primary font-bold tracking-widest uppercase">
                 {SITE_CONFIG.role}
               </span>
-            </motion.div>
+            </MotionCard>
 
             <motion.h1
               initial={{ x: -500, opacity: 0 }}
@@ -217,17 +220,18 @@ const HeroSection = () => {
               {SITE_CONFIG.fullName}
             </motion.h1>
 
-            <motion.span
+            <MotionCard
+              variant="default"
               initial={{ scale: 3 }}
               animate={{ scale: 1 }}
               transition={{ duration: 0.6, delay, ease: "easeOut" }}
               style={{
                 scale: useTransform(scrollYProgress, [0, 0.6, 1], [1, 5, 300]),
               }}
-              className="bg-foreground border-foreground text-primary mb-2 inline-block rotate-2 border-2 px-4 pb-2 text-4xl shadow-[6px_6px_0_0_var(--color-primary)] lg:text-7xl"
+              className="bg-foreground border-primary text-primary mb-2 inline-block rotate-2 px-4 pb-2 text-4xl shadow-[6px_6px_0_0_var(--color-primary)] hover:shadow-[6px_6px_0_0_var(--color-primary)] lg:text-7xl"
             >
               {SITE_CONFIG.name}
-            </motion.span>
+            </MotionCard>
 
             <motion.p
               initial={{ opacity: 0, scale: 0.5 }}
