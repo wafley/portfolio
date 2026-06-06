@@ -39,7 +39,7 @@ export function SplashScreen() {
     <AnimatePresence>
       {show && (
         <motion.div
-          className="bg-background text-primary fixed inset-0 z-[9999] flex flex-col items-center justify-center"
+          className="bg-background text-primary fixed inset-0 z-9999 flex flex-col items-center justify-center"
           initial={{ opacity: 1 }}
           exit={{ opacity: 0, top: "-100%", filter: "blur(20px)" }}
           transition={{ duration: 0.8, ease: "easeInOut" }}
@@ -48,7 +48,7 @@ export function SplashScreen() {
           <FarGrid className="z-0 opacity-50" />
 
           {/* Scanline overlay */}
-          <div className="pointer-events-none absolute inset-0 z-50 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.1)_50%)] bg-[length:100%_4px] opacity-20" />
+          <div className="bg-size-100%_4px] pointer-events-none absolute inset-0 z-50 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.1)_50%)] opacity-20" />
 
           <div className="relative z-10 flex flex-col items-center gap-12">
             <motion.div

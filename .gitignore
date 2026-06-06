@@ -43,3 +43,7 @@ next-env.d.ts
 # AI Agents / Local Tools Runtime
 .agents/
 skills-lock.json
+
+# Editor Configs
+.vscode
+.idea

@@ -13,7 +13,7 @@ export function Noise({
 
   return (
     <div
-      className="pointer-events-none fixed -top-[50%] -left-[50%] z-50 h-[200vh] w-[200%]"
+      className="pointer-events-none fixed top-[-50%] left-[-50%] z-50 h-[200vh] w-[200%]"
       style={{
         opacity: opacity,
         backgroundImage: `url("${svgNoise}")`,

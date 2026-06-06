@@ -4,7 +4,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "group/button inline-flex shrink-0 items-center justify-center border-2 border-foreground bg-clip-padding text-sm font-bold uppercase tracking-widest whitespace-nowrap transition-all outline-none select-none focus-visible:ring-3 focus-visible:ring-primary active:not-aria-[haspopup]:translate-x-[4px] active:not-aria-[haspopup]:translate-y-[4px] active:not-aria-[haspopup]:shadow-none disabled:pointer-events-none disabled:opacity-50 shadow-[4px_4px_0_0_var(--color-foreground)] hover:-translate-y-[2px] hover:-translate-x-[2px] hover:shadow-[6px_6px_0_0_var(--color-foreground)] [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  "group/button border-foreground focus-visible:ring-primary inline-flex shrink-0 items-center justify-center border-2 bg-clip-padding text-sm font-bold tracking-widest whitespace-nowrap uppercase shadow-[4px_4px_0_0_var(--color-foreground)] transition-all outline-none select-none hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0_0_var(--color-foreground)] focus-visible:ring-3 active:not-aria-[haspopup]:translate-x-[4px] active:not-aria-[haspopup]:translate-y-[4px] active:not-aria-[haspopup]:shadow-none disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
   {
     variants: {
       variant: {
@@ -12,9 +12,9 @@ const buttonVariants = cva(
         outline: "bg-background text-foreground",
         secondary: "bg-secondary text-secondary-foreground",
         ghost:
-          "border-transparent shadow-none hover:shadow-none hover:translate-x-0 hover:translate-y-0 active:translate-x-0 active:translate-y-0 hover:bg-muted text-foreground",
+          "hover:bg-muted text-foreground border-transparent shadow-none hover:translate-x-0 hover:translate-y-0 hover:shadow-none active:translate-x-0 active:translate-y-0",
         destructive: "bg-destructive text-destructive-foreground",
-        link: "border-transparent shadow-none hover:shadow-none hover:translate-x-0 hover:translate-y-0 active:translate-x-0 active:translate-y-0 text-primary underline-offset-4 hover:underline",
+        link: "text-primary border-transparent underline-offset-4 shadow-none hover:translate-x-0 hover:translate-y-0 hover:underline hover:shadow-none active:translate-x-0 active:translate-y-0",
       },
       size: {
         default:
