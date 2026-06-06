@@ -1,31 +1,24 @@
 "use client";
 
 import React from "react";
-import { useTransform } from "framer-motion";
+import { motion, useTransform } from "framer-motion";
 import useSpeedScrollElement from "@/hooks/useScrollProgress";
-import { withNeoBrutalist } from "@/modules/home/components";
-
-const NeoBrutalistSpan = withNeoBrutalist("span");
 
 const ExploreSection = () => {
   const { ref: containerRef, scrollYProgress } =
     useSpeedScrollElement<HTMLElement>({
-      offset: ["start end", "end start"],
+      offset: ["start start", "end end"],
     });
 
   return (
     <section ref={containerRef} className="h-[200vh]">
-      <div className="sticky top-0 flex h-screen flex-col items-center justify-center overflow-hidden">
-        <NeoBrutalistSpan
+      <div className="sticky top-0 flex h-screen items-center justify-center overflow-hidden">
+        <motion.div
           style={{
-            scale: useTransform(scrollYProgress, [0, 0.35], [200, 1]),
-            x: useTransform(scrollYProgress, [0, 0.35], [-2000, 0]),
-            y: useTransform(scrollYProgress, [0, 0.35], [-100, 0]),
+            y: useTransform(scrollYProgress, [0, 0.3], [0, 1000]),
           }}
-          className="z-20 mb-2 inline-block rotate-2"
-        >
-          Explore
-        </NeoBrutalistSpan>
+          className="bg-foreground absolute top-0 z-10 h-screen w-full"
+        />
       </div>
     </section>
   );

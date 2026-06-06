@@ -13,7 +13,9 @@ const NeoBrutalistSpan = withNeoBrutalist("span");
 const HeroSection = () => {
   const delay = 3.2;
   const { ref: containerRef, scrollYProgress } =
-    useSpeedScrollElement<HTMLElement>({ offset: ["start start", "end end"] });
+    useSpeedScrollElement<HTMLElement>({
+      offset: ["start start", "end end"],
+    });
 
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -223,7 +225,7 @@ const HeroSection = () => {
               animate={{ scale: 1 }}
               transition={{ duration: 0.6, delay, ease: "easeOut" }}
               style={{
-                scale: useTransform(scrollYProgress, [0, 0.8, 1], [1, 2, 250]),
+                scale: useTransform(scrollYProgress, [0, 0.6, 1], [1, 5, 300]),
               }}
               className="relative z-20 mb-2 inline-block rotate-2"
             >
