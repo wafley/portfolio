@@ -6,9 +6,6 @@ import { Button } from "@/components/ui/button";
 import { FarGrid } from "@/components/shared/far-grid";
 import { SITE_CONFIG } from "@/constants";
 import useSpeedScrollElement from "@/hooks/useScrollProgress";
-import { withNeoBrutalist } from "@/modules/home/components";
-
-const NeoBrutalistSpan = withNeoBrutalist("span");
 
 const HeroSection = () => {
   const delay = 3.2;
@@ -220,17 +217,17 @@ const HeroSection = () => {
               {SITE_CONFIG.fullName}
             </motion.h1>
 
-            <NeoBrutalistSpan
+            <motion.span
               initial={{ scale: 3 }}
               animate={{ scale: 1 }}
               transition={{ duration: 0.6, delay, ease: "easeOut" }}
               style={{
                 scale: useTransform(scrollYProgress, [0, 0.6, 1], [1, 5, 300]),
               }}
-              className="relative z-20 mb-2 inline-block rotate-2"
+              className="bg-foreground border-foreground text-primary mb-2 inline-block rotate-2 border-2 px-4 pb-2 text-4xl shadow-[6px_6px_0_0_var(--color-primary)] lg:text-7xl"
             >
               {SITE_CONFIG.name}
-            </NeoBrutalistSpan>
+            </motion.span>
 
             <motion.p
               initial={{ opacity: 0, scale: 0.5 }}
