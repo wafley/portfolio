@@ -115,7 +115,7 @@ export function Navbar() {
                   );
                 })}
               </ul>
-              <div className="border-border flex flex-col gap-2 border-t pt-4">
+              <div className="border-border flex flex-col gap-3 border-t pt-4">
                 <Button variant="outline" className="w-full">
                   Masuk
                 </Button>
