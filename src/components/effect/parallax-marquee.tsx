@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useRef } from "react";
 import {
   motion,
   useScroll,
@@ -19,63 +19,67 @@ interface ParallaxProps extends React.HTMLAttributes<HTMLDivElement> {
   speed?: number;
 }
 
-const ParallaxMarquee = ({
-  children,
-  baseVelocity = 5,
-  speed = 1000,
-  className,
-  ...props
-}: ParallaxProps) => {
-  const { scrollY } = useScroll();
-  const baseX = useMotionValue(0);
-  const scrollVelocity = useVelocity(scrollY);
+const ParallaxMarquee = React.forwardRef<HTMLDivElement, ParallaxProps>(
+  ({ children, baseVelocity = 5, speed = 1000, className, ...props }, ref) => {
+    const baseX = useMotionValue(0);
+    const { scrollY } = useScroll();
+    const scrollVelocity = useVelocity(scrollY);
 
-  const smoothVelocity = useSpring(scrollVelocity, {
-    damping: 50,
-    stiffness: 400,
-  });
+    const smoothVelocity = useSpring(scrollVelocity, {
+      damping: 50,
+      stiffness: 300,
+    });
 
-  const velocityFactor = useTransform(smoothVelocity, [0, 1000], [0, 5], {
-    clamp: false,
-  });
+    const velocityFactor = useTransform(smoothVelocity, [0, 1000], [0, 5], {
+      clamp: false,
+    });
 
-  const x = useTransform(baseX, (v) => `${wrap(0, -20, v)}%`);
+    const x = useTransform(baseX, (v) => `${wrap(-10, 0, v)}%`);
 
-  const directionFactor = React.useRef<number>(1);
-  useAnimationFrame((t, delta) => {
-    let moveBy = directionFactor.current * baseVelocity * (delta / speed);
+    const directionFactor = useRef<number>(1);
 
-    if (velocityFactor.get() < 0) {
-      directionFactor.current = -1;
-    } else if (velocityFactor.get() > 0) {
-      directionFactor.current = 1;
-    }
+    useAnimationFrame((t, delta) => {
+      let moveBy = directionFactor.current * baseVelocity * (delta / speed);
 
-    moveBy += directionFactor.current * moveBy * velocityFactor.get();
+      if (velocityFactor.get() < 0) {
+        directionFactor.current = -1;
+      } else if (velocityFactor.get() > 0) {
+        directionFactor.current = 1;
+      }
 
-    baseX.set(baseX.get() + moveBy);
-  });
+      moveBy += directionFactor.current * moveBy * velocityFactor.get();
 
-  return (
-    <div
-      className={cn(
-        "border-foreground flex flex-nowrap overflow-x-hidden overflow-y-visible border-y-4 py-4 whitespace-nowrap",
-        className,
-      )}
-      {...props}
-    >
-      <motion.div
-        className="flex flex-nowrap items-center gap-8 pr-8 whitespace-nowrap md:gap-16 md:pr-16"
-        style={{ x }}
+      baseX.set(baseX.get() + moveBy);
+    });
+
+    return (
+      <div
+        ref={ref}
+        className={cn(
+          "flex flex-nowrap overflow-hidden px-2 py-2 whitespace-nowrap",
+          className,
+        )}
+        {...props}
       >
-        <span className="flex shrink-0 items-center">{children}</span>
-        <span className="flex shrink-0 items-center">{children}</span>
-        <span className="flex shrink-0 items-center">{children}</span>
-        <span className="flex shrink-0 items-center">{children}</span>
-        <span className="flex shrink-0 items-center">{children}</span>
-      </motion.div>
-    </div>
-  );
-};
+        <motion.div
+          className="flex w-max flex-nowrap whitespace-nowrap"
+          style={{ x }}
+        >
+          <div className="flex shrink-0">{children}</div>
+          <div className="flex shrink-0">{children}</div>
+          <div className="flex shrink-0">{children}</div>
+          <div className="flex shrink-0">{children}</div>
+          <div className="flex shrink-0">{children}</div>
+          <div className="flex shrink-0">{children}</div>
+          <div className="flex shrink-0">{children}</div>
+          <div className="flex shrink-0">{children}</div>
+          <div className="flex shrink-0">{children}</div>
+          <div className="flex shrink-0">{children}</div>
+        </motion.div>
+      </div>
+    );
+  },
+);
+ParallaxMarquee.displayName = "ParallaxMarquee";
 
-export { ParallaxMarquee };
+export default ParallaxMarquee;
