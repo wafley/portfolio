@@ -1,4 +1,4 @@
-import { Bungee_Shade, DotGothic16 } from "next/font/google";
+import { Bungee_Shade, DotGothic16, Sixtyfour } from "next/font/google";
 
 const bungeeInline = Bungee_Shade({
   subsets: ["latin"],
@@ -12,9 +12,16 @@ const dotGothic = DotGothic16({
   variable: "--font-gothic",
 });
 
+const sixtyfour = Sixtyfour({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-sixtyfour",
+});
+
 export const fonts = {
   bungeeInline,
   dotGothic,
+  sixtyfour,
 } as const;
 
 export const fontVariables = Object.values(fonts)

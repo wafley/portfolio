@@ -44,7 +44,9 @@ export function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
             <TerminalSquare className="text-primary h-8 w-8" />
-            <span className="text-2xl tracking-tight">{SITE_CONFIG.name}.</span>
+            <span className="font-sixtyfour text-2xl tracking-tight">
+              {SITE_CONFIG.name}.
+            </span>
           </Link>
 
           <div className="flex items-center gap-2 md:gap-6">

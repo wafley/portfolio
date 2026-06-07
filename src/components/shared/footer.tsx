@@ -12,7 +12,9 @@ export function Footer() {
         <div className="flex flex-col items-center gap-2 md:items-start">
           <Link href="/" className="flex items-center gap-2">
             <TerminalSquare className="text-primary h-8 w-8" />
-            <span className="text-2xl tracking-tight">{SITE_CONFIG.name}.</span>
+            <span className="font-sixtyfour text-2xl tracking-tight">
+              {SITE_CONFIG.name}.
+            </span>
           </Link>
           <p className="text-muted-foreground text-sm tracking-widest uppercase">
             (C) {new Date().getFullYear()}
